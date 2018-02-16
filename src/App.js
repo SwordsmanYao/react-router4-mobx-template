@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import stores from './stores';
 import routerConfig from "./router";
+import history from './history';
 
 // mobx 启用严格模式，强制所有的状态修改都必须由 action 来完成
 mobx.useStrict(true);
@@ -14,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Provider {...stores}>
-        <Router>
+        <Router history={history}>
           <Switch>
             {
               routerConfig.map(item => (
