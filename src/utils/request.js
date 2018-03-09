@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { notification } from 'antd';
+// import { notification } from 'antd';
 import md5 from 'md5';
 
 const service = axios.create({
@@ -63,26 +63,29 @@ service.interceptors.response.use(
         // 跳转登录页
         // routerRedux.push('/user/login');
       } else if (data.Code !== 200) {
-        notification.error({
-          message: `Code: ${data.Code}`,
-          description: data.Error.Message,
-        });
+        // notification.error({
+        //   message: `Code: ${data.Code}`,
+        //   description: data.Error.Message,
+        // });
+        alert(data.Error.Message);
       }
       return data;
     } else {
-      notification.error({
-        message: `请求错误 ${response.status}: ${response.url}`,
-        description: response.statusText,
-      });
+      // notification.error({
+      //   message: `请求错误 ${response.status}: ${response.url}`,
+      //   description: response.statusText,
+      // });
+      alert(`请求错误 ${response.status}: ${response.url}`);
       return Promise.reject('error');
     }
   },
   error => {
 
-    notification.error({
-      message: `error`,
-      description: error.message,
-    });
+    // notification.error({
+    //   message: `error`,
+    //   description: error.message,
+    // });
+    alert(error.message);
     return Promise.reject(error);
   }
 );
