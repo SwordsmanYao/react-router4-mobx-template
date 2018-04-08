@@ -4,7 +4,12 @@ import { basic as basicRouter } from '../router';
 
 export default ({ match }) => (
   <div>
-    basic
+    basiclayout页面
+    {match.url}
+
+    <br/>
+    <br/>
+
     <Switch>
       {
         basicRouter.map(item => (

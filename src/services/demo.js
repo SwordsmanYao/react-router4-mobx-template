@@ -2,10 +2,9 @@ import request from '../utils/request';
 
 const api = window.PUBLIC_ENV_CONFIG.API;
 
-export function query(params) {
+export function queryPerson(params) {
   return request({
     url: `${api}/demo/query`,
-    method: 'get',
     params: params,
   });
 }

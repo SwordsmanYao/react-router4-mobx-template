@@ -1,17 +1,17 @@
 import { observable, action, computed } from 'mobx';
-import { query } from "../services/demo";
+import { queryPerson } from "../services/demo";
 
 class DemoStore {
-  @observable data;
+  @observable person;
 
   /**
    * 含有接口请求等异步操作的 action
    */
   @action
-  async fetchData() {
-    const response = await query();
+  async fetchPerson(data) {
+    const response = await queryPerson(data);
     if(response.Code === 200) {
-      this.setData(response.Data);
+      this.setPerson(response.Data);
     }
   }
 
@@ -19,8 +19,24 @@ class DemoStore {
    * 不含异步操作的 action
    */
   @action
-  setData(data) {
-    this.data = data;
+  setPerson(data) {
+    this.person = data;
+  }
+
+  @action
+  addPersonAge() {
+    this.setPerson({
+      ...this.person,
+      age: this.person.age + 1,
+    });
+  }
+
+  @action
+  setPersonName(data) {
+    this.setPerson({
+      ...this.person,
+      name: data,
+    })
   }
 
   @computed
